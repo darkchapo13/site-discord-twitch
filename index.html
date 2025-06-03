@@ -11,6 +11,7 @@
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" />
   
   <style>
+    /* Reset & base */
     body, html {
       margin: 0; padding: 0;
       height: 100%;
@@ -26,6 +27,8 @@
       position: relative;
       flex-direction: column;
     }
+
+    /* Overlay dégradé pour lisibilité */
     body::before {
       content: "";
       position: fixed;
@@ -33,6 +36,8 @@
       background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.7) 100%);
       z-index: 0;
     }
+
+    /* Contenu au-dessus */
     .content {
       position: relative;
       z-index: 1;
@@ -40,13 +45,15 @@
       padding: 20px;
       box-sizing: border-box;
     }
+
+    /* Profil Zoxises */
     .profile-pic {
-      width: 140px;
-      height: 140px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       overflow: hidden;
-      margin: 0 auto 10px auto;
-      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+      box-shadow: 0 0 15px rgba(0,0,0,0.8);
+      margin: 0 auto 15px auto;
     }
     .profile-pic img {
       width: 100%;
@@ -55,18 +62,29 @@
       display: block;
     }
     .name {
+      font-size: 2.5rem;
       font-weight: 700;
-      font-size: 2.8rem;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
       margin-bottom: 8px;
+      text-shadow: 2px 2px 6px #000;
     }
     .certified-text {
-      font-weight: 500;
-      font-size: 1.1rem;
       color: #1DA1F2;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
-      margin-bottom: 30px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      text-shadow: 1px 1px 4px #000;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 40px;
     }
+    .certified-text svg {
+      width: 24px;
+      height: 24px;
+      fill: #1DA1F2;
+      filter: drop-shadow(0 0 3px #1DA1F2);
+    }
+
     h1 {
       font-weight: 600;
       font-size: 3rem;
@@ -74,6 +92,7 @@
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
       animation: fadeInDown 1s ease forwards;
     }
+
     p {
       font-weight: 400;
       font-size: 1.25rem;
@@ -81,6 +100,7 @@
       text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
       animation: fadeInUp 1.2s ease forwards;
     }
+
     .btn-discord {
       background-color: #5865f2;
       color: white;
@@ -95,11 +115,14 @@
       display: inline-block;
       animation: fadeIn 1.5s ease forwards;
     }
+
     .btn-discord:hover {
       background-color: #4752c4;
       transform: scale(1.05);
       box-shadow: 0 7px 20px rgba(71, 82, 196, 0.7);
     }
+
+    /* Logo Discord */
     .discord-logo-link {
       display: inline-block;
       margin-bottom: 20px;
@@ -115,6 +138,7 @@
       transform: scale(1.1);
       filter: drop-shadow(0 0 6px #4752c4);
     }
+
     footer {
       margin-top: 40px;
       font-size: 0.9rem;
@@ -124,6 +148,8 @@
       position: relative;
       z-index: 1;
     }
+
+    /* Copier le lien bouton */
     #copyBtn {
       background-color: #7289da;
       margin-left: 15px;
@@ -142,21 +168,33 @@
       transform: scale(1.05);
       box-shadow: 0 7px 20px rgba(91, 110, 174, 0.7);
     }
+
+    /* Animations */
     @keyframes fadeInDown {
       0% {opacity: 0; transform: translateY(-20px);}
       100% {opacity: 1; transform: translateY(0);}
     }
+
     @keyframes fadeInUp {
       0% {opacity: 0; transform: translateY(20px);}
       100% {opacity: 1; transform: translateY(0);}
     }
+
     @keyframes fadeIn {
       0% {opacity: 0;}
       100% {opacity: 1;}
     }
+
+    /* Responsive */
     @media (max-width: 480px) {
-      h1 { font-size: 2rem; }
-      p { font-size: 1rem; }
+      h1 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
       .btn-discord, #copyBtn {
         font-size: 1rem;
         padding: 12px 25px;
@@ -168,21 +206,31 @@
       .name-certified {
         font-size: 1.8rem;
       }
+      .certified-badge svg {
+        width: 20px;
+        height: 20px;
+      }
       .certified-text {
         font-size: 0.85rem;
+      }
+      .profiles-container {
+        gap: 30px;
       }
     }
   </style>
 </head>
 <body>
   <div class="content">
-
-    <div style="text-align: center;">
-      <div class="profile-pic">
-        <img src="https://i.pinimg.com/originals/a8/ab/95/a8ab953a947847b50c2f525c98345a0d.gif" alt="Photo de profil de Dark" />
-      </div>
-      <div class="name">Dark</div>
-      <div class="certified-text">Compte certifié</div>
+    <!-- Profil Zoxises -->
+    <div class="profile-pic">
+      <img src="https://i.pinimg.com/originals/a8/ab/95/a8ab953a947847b50c2f525c98345a0d.gif" alt="Photo profil Zoxises" />
+    </div>
+    <div class="name">Zoxises</div>
+    <div class="certified-text" aria-label="Compte certifié">
+      Compte certifié
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.5 16.5L5 12l1.4-1.4 3.1 3.1 6.5-6.5L16.5 8l-7 7z"/>
+      </svg>
     </div>
 
     <h1>Rejoins le serveur de Dark !</h1>
