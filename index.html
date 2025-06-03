@@ -3,22 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <title>Serveur Discord de Dark</title>
-  
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  
-  <!-- Favicon -->
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" />
-  
   <style>
-    /* Reset & base */
     body, html {
       margin: 0; padding: 0;
       height: 100%;
       font-family: 'Poppins', sans-serif;
       color: white;
-      background: url('https://i.pinimg.com/originals/e4/f2/b3/e4f2b37d939a90c79ba04f52c34bfa45.gif') no-repeat center center fixed;
-      background-size: cover;
       overflow-x: hidden;
       display: flex;
       justify-content: center;
@@ -26,9 +18,18 @@
       text-align: center;
       position: relative;
       flex-direction: column;
+      background: black;
     }
-
-    /* Overlay dégradé pour lisibilité */
+    #background-video {
+      position: fixed;
+      right: 0; bottom: 0;
+      min-width: 100%; 
+      min-height: 100%;
+      width: auto; height: auto;
+      z-index: -1;
+      object-fit: cover;
+      filter: brightness(0.6);
+    }
     body::before {
       content: "";
       position: fixed;
@@ -36,8 +37,6 @@
       background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.7) 100%);
       z-index: 0;
     }
-
-    /* Contenu au-dessus */
     .content {
       position: relative;
       z-index: 1;
@@ -45,8 +44,6 @@
       padding: 20px;
       box-sizing: border-box;
     }
-
-    /* Profil rond avec gif */
     .profile-pic {
       width: 120px;
       height: 120px;
@@ -61,35 +58,35 @@
       object-fit: cover;
       display: block;
     }
-
-    /* Nom + badge certifié */
     .name-certified {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 5px;
       font-weight: 600;
       font-size: 2.5rem;
-      margin-bottom: 5px;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
       animation: fadeInDown 1s ease forwards;
     }
-    
-    .certified-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      margin-top: 8px;
-      font-weight: 500;
-      font-size: 1.1rem;
-      color: #1DA1F2;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
-      animation: fadeInUp 1.2s ease forwards;
-    }
     .certified-badge svg {
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
       fill: #1DA1F2;
       filter: drop-shadow(0 0 3px #1DA1F2);
     }
-
+    .certified-text {
+      font-weight: 500;
+      font-size: 1.25rem;
+      color: #1DA1F2;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+      animation: fadeInUp 1.2s ease forwards;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 30px;
+    }
     h1 {
       font-weight: 600;
       font-size: 3rem;
@@ -97,7 +94,6 @@
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
       animation: fadeInDown 1s ease forwards;
     }
-
     p {
       font-weight: 400;
       font-size: 1.25rem;
@@ -105,7 +101,6 @@
       text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
       animation: fadeInUp 1.2s ease forwards;
     }
-
     .btn-discord {
       background-color: #5865f2;
       color: white;
@@ -120,24 +115,11 @@
       display: inline-block;
       animation: fadeIn 1.5s ease forwards;
     }
-
     .btn-discord:hover {
       background-color: #4752c4;
       transform: scale(1.05);
       box-shadow: 0 7px 20px rgba(71, 82, 196, 0.7);
     }
-
-    footer {
-      margin-top: 40px;
-      font-size: 0.9rem;
-      color: #dcdcdc;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-      animation: fadeIn 1.8s ease forwards;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Copier le lien bouton */
     #copyBtn {
       background-color: #7289da;
       margin-left: 15px;
@@ -156,33 +138,25 @@
       transform: scale(1.05);
       box-shadow: 0 7px 20px rgba(91, 110, 174, 0.7);
     }
-
-    /* Animations */
     @keyframes fadeInDown {
       0% {opacity: 0; transform: translateY(-20px);}
       100% {opacity: 1; transform: translateY(0);}
     }
-
     @keyframes fadeInUp {
       0% {opacity: 0; transform: translateY(20px);}
       100% {opacity: 1; transform: translateY(0);}
     }
-
     @keyframes fadeIn {
       0% {opacity: 0;}
       100% {opacity: 1;}
     }
-
-    /* Responsive */
     @media (max-width: 480px) {
       h1 {
         font-size: 2rem;
       }
-
       p {
         font-size: 1rem;
       }
-
       .btn-discord, #copyBtn {
         font-size: 1rem;
         padding: 12px 25px;
@@ -198,25 +172,31 @@
         width: 20px;
         height: 20px;
       }
-      .certified-container {
+      .certified-text {
         font-size: 0.85rem;
       }
     }
   </style>
 </head>
 <body>
+
+  <video autoplay muted loop id="background-video" playsinline>
+    <source src="https://v1.pinimg.com/videos/mc/720p/0e/c4/17/0ec4173488d500d0a868f1ce072078ce.mp4" type="video/mp4" />
+    Votre navigateur ne supporte pas la vidéo en arrière-plan.
+  </video>
+
   <div class="content">
 
     <div style="text-align: center;">
       <div class="profile-pic">
-        <img src="https://i.pinimg.com/originals/a8/ab/95/a8ab953a947847b50c2f525c98345a0d.gif" alt="Photo de profil de Zoxises" />
+        <img src="https://i.pinimg.com/originals/01/5b/0e/015b0e29ac0bc0122a0a4a0860c2a1e3.gif" alt="Photo de profil de Zoxises" />
       </div>
-      <div class="name-certified" aria-label="Nom de Zoxises">
+      <div class="name-certified" aria-label="Nom et badge certifié de Zoxises">
         Zoxises
       </div>
-      <div class="certified-container" aria-label="Compte certifié">
+      <div class="certified-text" aria-label="Compte certifié avec badge">
         Compte certifié
-        <span class="certified-badge">
+        <span class="certified-badge" aria-label="Badge certifié">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
             <path fill="#1DA1F2" d="M9.5 16.5L5 12l1.4-1.4 3.1 3.1 6.5-6.5L16.5 8l-7 7z"/>
           </svg>
@@ -227,7 +207,7 @@
     <h1>Rejoins le serveur de Dark !</h1>
     <p>Un lieu de fun, d'entraide et de gaming. Tu es le bienvenu ! 🎮💬</p>
     
-    <a href="https://discord.gg/hUBVf8dm" target="_blank" class="btn-discord" aria-label="Rejoindre le serveur Discord">
+    <a href="https://discord.gg/QFSPavF8" target="_blank" class="btn-discord" aria-label="Rejoindre le serveur Discord">
       ➡️ Rejoindre le serveur
     </a>
     
@@ -241,7 +221,7 @@
   <script>
     const copyBtn = document.getElementById('copyBtn');
     copyBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText('https://discord.gg/hUBVf8dm')
+      navigator.clipboard.writeText('https://discord.gg/QFSPavF8')
         .then(() => {
           copyBtn.textContent = '✅ Lien copié !';
           setTimeout(() => copyBtn.textContent = '📋 Copier le lien', 2000);
@@ -251,5 +231,6 @@
         });
     });
   </script>
+
 </body>
 </html>
