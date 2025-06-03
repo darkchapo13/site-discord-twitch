@@ -111,25 +111,57 @@
       animation: fadeInUp 1.2s ease forwards;
     }
 
-    .btn-discord {
-      background-color: #5865f2;
-      color: white;
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .btn-discord, .btn-twitch, #copyBtn {
       padding: 15px 35px;
       font-size: 1.2rem;
       border: none;
       border-radius: 12px;
       cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 5px 15px rgba(88, 101, 242, 0.5);
+      color: white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
       transition: background-color 0.3s, transform 0.3s;
+      text-decoration: none;
       display: inline-block;
-      animation: fadeIn 1.5s ease forwards;
+      font-weight: 600;
+      user-select: none;
     }
 
+    .btn-discord {
+      background-color: #5865f2;
+      box-shadow: 0 5px 15px rgba(88, 101, 242, 0.5);
+    }
     .btn-discord:hover {
       background-color: #4752c4;
       transform: scale(1.05);
       box-shadow: 0 7px 20px rgba(71, 82, 196, 0.7);
+    }
+
+    .btn-twitch {
+      background-color: #9146FF;
+      box-shadow: 0 5px 15px rgba(145, 70, 255, 0.5);
+    }
+    .btn-twitch:hover {
+      background-color: #772ce8;
+      transform: scale(1.05);
+      box-shadow: 0 7px 20px rgba(119, 44, 232, 0.7);
+    }
+
+    #copyBtn {
+      background-color: #7289da;
+      box-shadow: 0 5px 15px rgba(114, 137, 218, 0.5);
+    }
+    #copyBtn:hover {
+      background-color: #5b6eae;
+      transform: scale(1.05);
+      box-shadow: 0 7px 20px rgba(91, 110, 174, 0.7);
     }
 
     footer {
@@ -140,26 +172,6 @@
       animation: fadeIn 1.8s ease forwards;
       position: relative;
       z-index: 1;
-    }
-
-    /* Copier le lien bouton */
-    #copyBtn {
-      background-color: #7289da;
-      margin-left: 15px;
-      padding: 15px 30px;
-      font-size: 1.2rem;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      color: white;
-      box-shadow: 0 5px 15px rgba(114, 137, 218, 0.5);
-      transition: background-color 0.3s, transform 0.3s;
-      animation: fadeIn 1.6s ease forwards;
-    }
-    #copyBtn:hover {
-      background-color: #5b6eae;
-      transform: scale(1.05);
-      box-shadow: 0 7px 20px rgba(91, 110, 174, 0.7);
     }
 
     /* Animations */
@@ -188,14 +200,19 @@
         font-size: 1rem;
       }
 
-      .btn-discord, #copyBtn {
+      .btn-container {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .btn-discord, .btn-twitch, #copyBtn {
         font-size: 1rem;
         padding: 12px 25px;
-        margin-left: 0;
-        margin-top: 10px;
-        display: block;
         width: 80%;
+        margin: 0 auto;
+        display: block;
       }
+
       .name-certified {
         font-size: 1.8rem;
       }
@@ -238,12 +255,16 @@
     <h1>Rejoins le serveur de Dark !</h1>
     <p>Un lieu de fun, d'entraide et de gaming. Tu es le bienvenu ! 🎮💬</p>
     
-    <a href="https://discord.gg/hUBVf8dm" target="_blank" class="btn-discord" aria-label="Rejoindre le serveur Discord">
-      ➡️ Rejoindre le serveur
-    </a>
-    
-    <button id="copyBtn" aria-label="Copier le lien du serveur Discord">📋 Copier le lien</button>
-    
+    <div class="btn-container">
+      <a href="https://discord.gg/hUBVf8dm" target="_blank" rel="noopener" class="btn-discord" aria-label="Rejoindre le serveur Discord">
+        ➡️ Rejoindre le serveur Discord
+      </a>
+      <a href="https://www.twitch.tv/zoxises" target="_blank" rel="noopener" class="btn-twitch" aria-label="Visiter ma chaîne Twitch">
+        🎥 Regarder sur Twitch
+      </a>
+      <button id="copyBtn" aria-label="Copier le lien du serveur Discord">📋 Copier le lien</button>
+    </div>
+
     <footer>
       <p>&copy; 2025 Dark | Site créé pour promouvoir mon serveur Discord</p>
     </footer>
