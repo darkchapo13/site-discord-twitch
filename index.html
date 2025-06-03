@@ -17,7 +17,7 @@
       height: 100%;
       font-family: 'Poppins', sans-serif;
       color: white;
-      background: url('https://i.pinimg.com/originals/a8/7f/4f/a87f4f342cdd9f3b06b8ff943dbf25b1.gif') no-repeat center center fixed;
+      background: url('https://i.pinimg.com/originals/e4/f2/b3/e4f2b37d939a90c79ba04f52c34bfa45.gif') no-repeat center center fixed;
       background-size: cover;
       overflow-x: hidden;
       display: flex;
@@ -46,14 +46,14 @@
       box-sizing: border-box;
     }
 
-    /* Profil Zoxises */
+    /* Profil rond avec gif */
     .profile-pic {
-      width: 150px;
-      height: 150px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       overflow: hidden;
-      box-shadow: 0 0 15px rgba(0,0,0,0.8);
       margin: 0 auto 15px auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
     }
     .profile-pic img {
       width: 100%;
@@ -61,24 +61,29 @@
       object-fit: cover;
       display: block;
     }
-    .name {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      text-shadow: 2px 2px 6px #000;
-    }
-    .certified-text {
-      color: #1DA1F2;
+
+    /* Nom + badge certifié */
+    .name-certified {
       font-weight: 600;
-      font-size: 1.2rem;
-      text-shadow: 1px 1px 4px #000;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 40px;
+      font-size: 2.5rem;
+      margin-bottom: 5px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      animation: fadeInDown 1s ease forwards;
     }
-    .certified-text svg {
+    
+    .certified-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      font-weight: 500;
+      font-size: 1.1rem;
+      color: #1DA1F2;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+      animation: fadeInUp 1.2s ease forwards;
+    }
+    .certified-badge svg {
       width: 24px;
       height: 24px;
       fill: #1DA1F2;
@@ -120,23 +125,6 @@
       background-color: #4752c4;
       transform: scale(1.05);
       box-shadow: 0 7px 20px rgba(71, 82, 196, 0.7);
-    }
-
-    /* Logo Discord */
-    .discord-logo-link {
-      display: inline-block;
-      margin-bottom: 20px;
-      animation: fadeIn 1s ease forwards;
-      z-index: 1;
-    }
-    .discord-logo-link img {
-      width: 60px;
-      filter: drop-shadow(0 0 3px #5865f2);
-      transition: transform 0.3s, filter 0.3s;
-    }
-    .discord-logo-link img:hover {
-      transform: scale(1.1);
-      filter: drop-shadow(0 0 6px #4752c4);
     }
 
     footer {
@@ -210,27 +198,30 @@
         width: 20px;
         height: 20px;
       }
-      .certified-text {
+      .certified-container {
         font-size: 0.85rem;
-      }
-      .profiles-container {
-        gap: 30px;
       }
     }
   </style>
 </head>
 <body>
   <div class="content">
-    <!-- Profil Zoxises -->
-    <div class="profile-pic">
-      <img src="https://i.pinimg.com/originals/a8/ab/95/a8ab953a947847b50c2f525c98345a0d.gif" alt="Photo profil Zoxises" />
-    </div>
-    <div class="name">Zoxises</div>
-    <div class="certified-text" aria-label="Compte certifié">
-      Compte certifié
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-        <path d="M9.5 16.5L5 12l1.4-1.4 3.1 3.1 6.5-6.5L16.5 8l-7 7z"/>
-      </svg>
+
+    <div style="text-align: center;">
+      <div class="profile-pic">
+        <img src="https://i.pinimg.com/originals/a8/ab/95/a8ab953a947847b50c2f525c98345a0d.gif" alt="Photo de profil de Zoxises" />
+      </div>
+      <div class="name-certified" aria-label="Nom de Zoxises">
+        Zoxises
+      </div>
+      <div class="certified-container" aria-label="Compte certifié">
+        Compte certifié
+        <span class="certified-badge">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#1DA1F2" d="M9.5 16.5L5 12l1.4-1.4 3.1 3.1 6.5-6.5L16.5 8l-7 7z"/>
+          </svg>
+        </span>
+      </div>
     </div>
 
     <h1>Rejoins le serveur de Dark !</h1>
